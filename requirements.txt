@@ -1,0 +1,23 @@
+# Full local-AI inference stack (NPU + iGPU via OpenVINO).
+# Document export deps live in requirements-export.txt.
+
+# OpenVINO runtime + generative pipelines (LLM, VLM)
+openvino>=2025.0
+openvino-genai>=2025.0
+
+# Model export HF -> OpenVINO IR (pulls torch + transformers; needed for export only)
+optimum-intel[openvino]>=1.21.0
+
+# PDF/image recognition input
+pymupdf>=1.24
+pillow>=10.0
+
+# OpenAI-compatible server for OpenWebUI
+fastapi>=0.110
+uvicorn[standard]>=0.29
+
+# Document export (also in requirements-export.txt)
+markdown>=3.5
+xhtml2pdf>=0.2.16
+python-docx>=1.1.0
+htmldocx>=0.0.6

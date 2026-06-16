@@ -65,6 +65,22 @@ python export_doc.py sample.md --to pdf
 | `recognize.py` | PDF/image → markdown (renders PDF pages with PyMuPDF) |
 | `rag_chat.py` | End-to-end: retrieve → generate → optional export |
 | `export_doc.py` | Markdown → PDF / DOCX / HTML (pure-Python) |
+| `server.py` | OpenAI-compatible API (FastAPI) over the LLM + embedder, for OpenWebUI |
 
 The numpy vector store is intentionally simple; swap for Chroma/FAISS when wiring
 OpenWebUI.
+
+## OpenWebUI
+
+`server.py` exposes the local models as an OpenAI-compatible API:
+
+```bash
+python server.py            # http://localhost:8000/v1
+#   GET  /v1/models
+#   POST /v1/chat/completions   (streaming + non-streaming)  -> Qwen2.5-3B on iGPU
+#   POST /v1/embeddings                                       -> bge-small on NPU
+```
+
+In OpenWebUI → **Settings → Connections → OpenAI API**: set Base URL to
+`http://localhost:8000/v1` (API key can be anything). The LLM appears as a model;
+point OpenWebUI's RAG embeddings at the same connection to use the NPU embedder.
