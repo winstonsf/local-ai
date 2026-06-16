@@ -28,6 +28,20 @@ $env:RAG_OPENAI_API_BASE_URL = $ShimBase
 $env:RAG_OPENAI_API_KEY = "local"
 $env:RAG_EMBEDDING_MODEL = "bge-small"
 
+# Web search via DuckDuckGo (no API key). Fetched pages are embedded on the NPU.
+# Note: web search REACHES THE INTERNET (the LLM stays local, the retrieval does not).
+# Set both old/new env-var spellings so it works across OpenWebUI versions.
+$env:ENABLE_WEB_SEARCH = "True"
+$env:ENABLE_RAG_WEB_SEARCH = "True"
+$env:WEB_SEARCH_ENGINE = "duckduckgo"
+$env:RAG_WEB_SEARCH_ENGINE = "duckduckgo"
+$env:WEB_SEARCH_RESULT_COUNT = "4"
+$env:RAG_WEB_SEARCH_RESULT_COUNT = "4"
+
 $env:DATA_DIR = "C:\Users\winst\openwebui-data"
+
+# Web-search config is "persistent" (env applies only on first run, then DB wins).
+# To re-apply this script's env config to an already-initialized install, launch once
+# with:  $env:RESET_CONFIG_ON_START="True"   (resets config to these env values).
 
 & "$OwuiVenv\Scripts\open-webui.exe" serve --port $Port
