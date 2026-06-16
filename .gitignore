@@ -11,3 +11,6 @@ models/
 *.chunks.json
 answer.pdf
 *_recognized.md
+
+# OpenWebUI secret key (generated at launch — never commit)
+.webui_secret_key
