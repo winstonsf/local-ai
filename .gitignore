@@ -1,0 +1,13 @@
+# Python venv
+.venv/
+__pycache__/
+*.pyc
+
+# Large exported OpenVINO models (multi-GB; recreate with optimum-cli export — see README)
+models/
+
+# Runtime artifacts
+*.npz
+*.chunks.json
+answer.pdf
+*_recognized.md

@@ -1,0 +1,6 @@
+# Document-export pipeline (markdown -> PDF / DOCX / HTML)
+# Pure-Python, installs cleanly on Windows with no system binaries.
+markdown>=3.5
+xhtml2pdf>=0.2.16     # HTML -> PDF
+python-docx>=1.1.0    # DOCX backend
+htmldocx>=0.0.6       # HTML -> DOCX
